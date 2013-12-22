@@ -9,16 +9,16 @@ module.exports = (grunt) ->
   
   grunt.initConfig
     jshint:
-      all: [
-        'tasks/*.js'
-        '<%= nodeunit.tests %>'
-      ]
       options:
         camelcase: true
         trailing: true
         indent: 2
         node: true
         reporter: require 'jshint-stylish'
+      all: [
+        'tasks/*.js'
+        '<%= nodeunit.tests %>'
+      ]
 
     clean:
       tests: ['test/actual']
@@ -55,9 +55,8 @@ module.exports = (grunt) ->
           'test/fixtures/plan.json'
         ]
 
-    # Unit tests
     nodeunit:
-      tests: ['test/*_test.js']
+      tests: ['test/test.js']
     
     release:
       options: {}

@@ -18,7 +18,7 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-merge-data');
 ```
 
-## The "merge_data" task
+## The `merge_data` task
 
 ### Overview
 In your project's Gruntfile, add a section named `merge_data` to the data object passed into `grunt.initConfig()`.
@@ -38,15 +38,21 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.data
+Type: `Object`, `Function`
+Default value: `null`
 
 A string value that is used to do something with whatever.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### options.space
+Type: `Number`, `String`
+Default value: `null`
+
+A string value that is used to do something else with whatever else.
+
+#### options.asConfig
+Type: `String`, `Boolean`
+Default value: `false`
 
 A string value that is used to do something else with whatever else.
 

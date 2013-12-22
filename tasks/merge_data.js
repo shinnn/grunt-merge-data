@@ -9,15 +9,15 @@ module.exports = function (grunt) {
   
   var path = require('path');
   
-  var mergeObjects = function (obj1, obj2) {
-    for (var attrname in obj2) {
-      if (obj2.hasOwnProperty(attrname)) {
-        obj1[attrname] = obj2[attrname];
+  var mergeObjects = function (destObj, srcObj) {
+    for (var attrname in srcObj) {
+      if (srcObj.hasOwnProperty(attrname)) {
+        destObj[attrname] = srcObj[attrname];
       }
     }
   };
   
-  var mergeData = function () {
+  var mergeDataTask = function () {
     // Merge task-specific and/or target-specific options with these defaults
     var options = this.options({
       data: null,
@@ -37,7 +37,7 @@ module.exports = function (grunt) {
         } else {
           return true;
         }
-      }).map(function (filePath) {
+      }).forEach(function (filePath) {
         var basename = path.basename(filePath, path.extname(filePath));
         var ext = path.extname(filePath).toLowerCase();
         if(ext === '.json') {
@@ -83,6 +83,6 @@ module.exports = function (grunt) {
   grunt.registerMultiTask(
     'merge_data',
     'Merge multiple data into a file or Grint config.',
-    mergeData
+    mergeDataTask
   );
 };
