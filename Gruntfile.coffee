@@ -2,7 +2,6 @@
 # Copyright (c) 2013 Shinnosuke Watanabe
 # Licensed under the MIT license.
 
-
 module.exports = (grunt) ->
   'use strict'
   
@@ -47,6 +46,9 @@ module.exports = (grunt) ->
 
       as_config:
         options:
+          data: ->
+            word = 'Apple'
+            {word: word.toLowerCase()}
           asConfig: 'ctx'
         src: [
           'test/fixtures/member.yaml'
@@ -56,7 +58,10 @@ module.exports = (grunt) ->
     # Unit tests
     nodeunit:
       tests: ['test/*_test.js']
-      
+    
+    release:
+      options: {}
+    
     ctx: {}
   
   # Actually load this plugin's task
@@ -71,7 +76,7 @@ module.exports = (grunt) ->
   ]
   
   grunt.registerTask 'context', ->
-    console.log grunt.config('ctx.plan')
+    console.log grunt.config('ctx')
   
   grunt.registerTask 'default', [
     'jshint'

@@ -4,23 +4,20 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
-
-var path = require('path');
-
-var mergeObjects = function (obj1, obj2) {
-  for (var attrname in obj2) {
-    if (obj2.hasOwnProperty(attrname)) {
-      obj1[attrname] = obj2[attrname];
-    }
-  }
-};
-
 module.exports = function (grunt) {
-  //console.log(module.exports);
-
-  grunt.registerMultiTask('merge_data', 'Merge multiple data.', function () {
-
+  'use strict';
+  
+  var path = require('path');
+  
+  var mergeObjects = function (obj1, obj2) {
+    for (var attrname in obj2) {
+      if (obj2.hasOwnProperty(attrname)) {
+        obj1[attrname] = obj2[attrname];
+      }
+    }
+  };
+  
+  var mergeData = function () {
     // Merge task-specific and/or target-specific options with these defaults
     var options = this.options({
       data: null,
@@ -51,7 +48,11 @@ module.exports = function (grunt) {
       });
       
       if (options.data) {
-        mergeObjects(data, options.data);
+        if (typeof options.data === 'function') {
+          mergeObjects(data, options.data());
+        } else {
+          mergeObjects(data, options.data);
+        }
       }
       
       if (typeof options.asConfig === 'string') {
@@ -77,5 +78,11 @@ module.exports = function (grunt) {
         grunt.log.writeln('File "' + file.dest + '" created.');
       }
     });
-  });
+  };
+
+  grunt.registerMultiTask(
+    'merge_data',
+    'Merge multiple data into a file or Grint config.',
+    mergeData
+  );
 };
