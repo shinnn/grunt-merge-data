@@ -1,0 +1,12 @@
+---
+  -
+    name: Bob
+    gender: male
+    age: 24
+    skills: [cpp, java]
+  -
+    name: Sue
+    gender: female
+    age: 28
+    skills: [ruby, perl]
+    
