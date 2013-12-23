@@ -1,6 +1,7 @@
 # grunt-merge-data
 
 [![NPM version](https://badge.fury.io/js/grunt-merge-data.png)](http://badge.fury.io/js/grunt-merge-data)
+[![Build Status](https://travis-ci.org/shinnn/grunt-merge-data.png?branch=master)](https://travis-ci.org/shinnn/grunt-merge-data)
 [![devDependency Status](https://david-dm.org/shinnn/grunt-merge-data/dev-status.png)](https://david-dm.org/shinnn/grunt-merge-data#info=devDependencies)
 
 ## Getting Started
@@ -30,10 +31,41 @@ grunt.initConfig({
       // Task-specific options go here.
     },
     your_target: {
-      // Target-specific file lists and/or options go here.
+      src: ['path/to/src/*.{json,y{,a}ml}']
+      dest: 'path/to/dest/_all.json'
     },
   },
 })
+```
+
+With `grunt merge_data` command, this task merges data of specified JSON or YAML files into a single JavaScript object, and write it as a JSON file.
+
+Each of the source data will be included in the merged data as `{<basename of file>: <data of file>}` format.
+
+For example, when the source files of the task are two data files, such as:
+
+data1.json:
+
+```json
+["Classic", "Rock", "Jazz"]
+```
+data2.yaml:
+
+```yaml
+first_name: John
+family_name: Smith
+```
+
+they will be merged into a JSON file like this:
+
+```json
+{
+  "data1": ["Classic", "Rock", "Jazz"],
+  "data2": {
+    "first_name": "John",
+    "family_name": "Smith"
+  }
+}
 ```
 
 ### Options
@@ -42,50 +74,47 @@ grunt.initConfig({
 Type: `Object`, `Function`
 Default value: `null`
 
-A string value that is used to do something with whatever.
+This is an additional data that will be merged together with the sources files.
+
+This option will overrides existing data of the source files.
+For example, when `option.data` is `{data1: 'something'}`, the data of `data1.json` won't be reflected in the output.
 
 #### options.space
 Type: `Number`, `String`
 Default value: `null`
 
-A string value that is used to do something else with whatever else.
+This option will be directly passed to `space` argument of `JSON.stringify`. You can control indent style of output file with this option. 
 
 #### options.asConfig
 Type: `String`, `Boolean`
 Default value: `false`
 
-A string value that is used to do something else with whatever else.
+When you use this option, you don't need to specify destination file path of the task target.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
 
 ```javascript
 grunt.initConfig({
   merge_data: {
-    options: {},
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+      'dest/default_options.json': ['src/testing.json', 'src/123.json'],
+    }
+  }
 })
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
 
 ```js
 grunt.initConfig({
   merge_data: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      asConfig: true
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+    src: ['src/testing.json', 'src/123.json']
+  }
 })
 ```
 
@@ -93,4 +122,4 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## License
-Copyright (c) 2013 Shinnosuke Watanabe. Licensed under the MIT license.
+Copyright (c) 2013 [Shinnosuke Watanabe](https://github.com/shinnn). Licensed under the MIT license.
