@@ -32,22 +32,21 @@ grunt.initConfig({
     },
     your_target: {
       src: ['path/to/src/*.{json,y{,a}ml}']
-      dest: 'path/to/dest/_all.json'
+      dest: 'path/to/dest/all.json'
     },
   },
 })
 ```
 
-With `grunt merge_data` command, this task merges data of specified JSON or YAML files into a single JavaScript object, and write it as a JSON file.
+Running this task with `grunt merge_data` command will merge all data of specified JSON or YAML files into a single JavaScript object, and write it as a JSON file.
 
-Each of the source data will be included in the merged data as `{<basename of file>: <data of file>}` format.
-
-For example, when the source files of the task are two data files, such as:
+Each of the data will be formatted in `{<basename of file>: <data of file>}` form.
+For example, when the source files of the task target are two data files, such as:
 
 data1.json:
 
 ```json
-["Classic", "Rock", "Jazz"]
+["Classic", "Jazz", "Rock"]
 ```
 data2.yaml:
 
@@ -60,7 +59,7 @@ they will be merged into a JSON file like this:
 
 ```json
 {
-  "data1": ["Classic", "Rock", "Jazz"],
+  "data1": ["Classic", "Jazz", "Rock"],
   "data2": {
     "first_name": "John",
     "family_name": "Smith"
@@ -119,7 +118,10 @@ grunt.initConfig({
 ```
 
 ## Contributing
+
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## License
-Copyright (c) 2013 [Shinnosuke Watanabe](https://github.com/shinnn). Licensed under the MIT license.
+
+Copyright (c) 2013 [Shinnosuke Watanabe](https://github.com/shinnn).
+Licensed under the MIT license.

@@ -2,27 +2,27 @@
 
 var grunt = require('grunt');
 
-exports.mergeData = {
-  setUp: function (done) {
-    // setup here if necessary
-    done();
-  },
-  defaultOptions: function (test) {
-    test.expect(1);
+var path = require('path');
+var files = grunt.file.expandMapping (
+  '{,*/}*.json',
+  'test/expected',
+  { cwd: 'test/actual' }
+);
 
-    var actual = grunt.file.read('test/actual/default_options.json');
-    var expected = grunt.file.read('test/expected/default_options.json');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
-
+function exportTests (map) {
+  var basename = path.basename(map.src);
+  
+  exports[basename] = function (test) {
+    var actual = grunt.file.read(map.src);
+    var expected = grunt.file.read(map.dest);
+    
+    test.strictEqual(
+      actual,
+      expected,
+      basename + " is not equal to expected output."
+    );
     test.done();
-  },
-  customOptions: function (test) {
-    test.expect(1);
+  };
+}
 
-    var actual = grunt.file.read('test/actual/custom_options.json');
-    var expected = grunt.file.read('test/expected/custom_options.json');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
-
-    test.done();
-  }
-};
+files.forEach(exportTests);

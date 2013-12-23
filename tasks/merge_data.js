@@ -1,21 +1,49 @@
-/*
- * grunt-merge-data
- * Copyright (c) 2013 Shinnosuke Watanabe
- * Licensed under the MIT license.
- */
+// grunt-merge-data
+// Copyright (c) 2013 Shinnosuke Watanabe
+// Licensed under the MIT license.
 
 module.exports = function (grunt) {
   'use strict';
   
   var path = require('path');
   
-  var mergeObjects = function (destObj, srcObj) {
+  function mergeObjects (destObj, srcObj) {
     for (var attrname in srcObj) {
       if (srcObj.hasOwnProperty(attrname)) {
         destObj[attrname] = srcObj[attrname];
       }
     }
-  };
+  }
+  
+  function mergeFileData (sources) {
+    return sources.filter(function (filePath) {
+      // Warn on and remove invalid source files (if nonull was set)
+      if (!grunt.file.exists(filePath)) {
+        grunt.log.warn('Source file "' + filePath + '" not found.');
+        return false;
+      } else {
+        return true;
+      }
+
+    }).map(function (filePath) {
+      var result = {
+        basename: path.basename(filePath, path.extname(filePath))
+      };
+
+      var ext = path.extname(filePath).toLowerCase();
+      if(ext === '.json') {
+        result.data = grunt.file.readJSON(filePath);
+      } else if (ext === '.yml' || ext === '.yaml') {
+        result.data = grunt.file.readYAML(filePath);
+      }
+
+      return result;
+
+    }).reduce(function (base, current) {
+      base[current.basename] = current.data;
+      return base;
+    }, {});
+  }
   
   var mergeDataTask = function () {
     // Merge task-specific and/or target-specific options with these defaults
@@ -25,27 +53,10 @@ module.exports = function (grunt) {
       asConfig: false
     });
     
-    // Iterate over all specified file groups
+    // Iterate over all specified src/dest file groups
     this.files.forEach(function (file) {
-      var data = {};
 
-      file.src.filter(function (filePath) {
-        // Warn on and remove invalid source files (if nonull was set)
-        if (!grunt.file.exists(filePath)) {
-          grunt.log.warn('Source file "' + filePath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).forEach(function (filePath) {
-        var basename = path.basename(filePath, path.extname(filePath));
-        var ext = path.extname(filePath).toLowerCase();
-        if(ext === '.json') {
-          data[basename] = grunt.file.readJSON(filePath);
-        } else if (ext === '.yml' || ext === '.yaml') {
-          data[basename] = grunt.file.readYAML(filePath);
-        }
-      });
+      var data = mergeFileData(file.src);
       
       if (options.data) {
         if (typeof options.data === 'function') {
@@ -73,9 +84,11 @@ module.exports = function (grunt) {
           file.dest,
           JSON.stringify(data, null, options.space)
         );
-
         // Print a success message
         grunt.log.writeln('File "' + file.dest + '" created.');
+
+      } else if (!options.asConfig) {
+        //grunt.log.warn("Both destination and "' + filePath + '" not found.');
       }
     });
   };

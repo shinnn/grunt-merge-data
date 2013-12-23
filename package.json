@@ -31,9 +31,10 @@
       "type": "MIT"
     }
   ],
+  "dependencies": {},
   "devDependencies": {
     "grunt-contrib-jshint": "~0.7.2",
-    "grunt-contrib-nodeunit": "~0.2.2",
+    "grunt-contrib-nodeunit": "gruntjs/grunt-contrib-nodeunit",
     "grunt-contrib-clean": "~0.5.0",
     "grunt": "~0.4.2",
     "load-grunt-tasks": "~0.2.0",
@@ -41,6 +42,7 @@
     "grunt-release": "~0.6.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "start": "grunt"
   }
 }

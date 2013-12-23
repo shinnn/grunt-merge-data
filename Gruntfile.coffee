@@ -21,27 +21,37 @@ module.exports = (grunt) ->
       ]
 
     clean:
-      tests: ['test/actual']
+      tests: ['test/actual/*']
     
     merge_data:
       no_options:
         options: {}
         src: ['test/fixtures/*']
-        dest: 'test/actual/default_options.json'
+        dest: 'test/actual/no-options.json'
 
-      custom:
+      data_object:
         options:
           data:
             attendance: true
-          space: 1
         src: ['test/fixtures/*']
-        dest: 'test/actual/custom_options.json'
+        dest: 'test/actual/data-object.json'
 
-      as_config:
+      data_function:
         options:
           data: ->
             word = 'Apple'
             {word: word.toLowerCase()}
+        src: ['test/fixtures/*']
+        dest: 'test/actual/data-function.json'
+
+      spaced:
+        options:
+          space: 1
+        src: ['test/fixtures/*']
+        dest: 'test/actual/spaced-style.json'
+
+      as_config:
+        options:
           asConfig: true
         src: ['test/fixtures/*']
 
