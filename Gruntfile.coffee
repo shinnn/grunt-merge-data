@@ -6,7 +6,7 @@ module.exports = (grunt) ->
   'use strict'
   
   require('load-grunt-tasks') grunt
-  
+    
   grunt.initConfig
     jshint:
       options:
@@ -26,10 +26,7 @@ module.exports = (grunt) ->
     merge_data:
       no_options:
         options: {}
-        src: [
-          'test/fixtures/member.yaml'
-          'test/fixtures/plan.json'
-        ]
+        src: ['test/fixtures/*']
         dest: 'test/actual/default_options.json'
 
       custom:
@@ -37,11 +34,7 @@ module.exports = (grunt) ->
           data:
             attendance: true
           space: 1
-          asConfig: true
-        src: [
-          'test/fixtures/member.yaml'
-          'test/fixtures/plan.json'
-        ]
+        src: ['test/fixtures/*']
         dest: 'test/actual/custom_options.json'
 
       as_config:
@@ -49,11 +42,8 @@ module.exports = (grunt) ->
           data: ->
             word = 'Apple'
             {word: word.toLowerCase()}
-          asConfig: 'ctx'
-        src: [
-          'test/fixtures/member.yaml'
-          'test/fixtures/plan.json'
-        ]
+          asConfig: true
+        src: ['test/fixtures/*']
 
     nodeunit:
       tests: ['test/test.js']
@@ -75,7 +65,7 @@ module.exports = (grunt) ->
   ]
   
   grunt.registerTask 'context', ->
-    console.log grunt.config('ctx')
+    console.log grunt.config('merge_data.as_config.context')
   
   grunt.registerTask 'default', [
     'jshint'

@@ -1,1 +1,1 @@
-{"member":[{"name":"Bob","gender":"male","age":24,"skills":["cpp","java"]},{"name":"Sue","gender":"female","age":28,"skills":["ruby","perl"]}],"plan":{"title":"Grunt Hackason","date":"2013-12-22T17:00:40.733Z"}}
+{"member":[{"name":"Bob","gender":"male","skills":["C++","Java"]},{"name":"Sue","gender":"female","skills":["javascript",{"altJS":["CoffeeScript","TypeScript"]}]}],"plan":{"title":"Grunt Hackason","date":"2013-12-22T17:00:40.733Z"}}

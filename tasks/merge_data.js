@@ -56,15 +56,15 @@ module.exports = function (grunt) {
       }
       
       if (typeof options.asConfig === 'string') {
-        grunt.config.set(options.asConfig, data);
+        grunt.config(options.asConfig, data);
         
       } else if (options.asConfig === true) {
-        var taskName = grunt.task.current.name;
-        var nameArg = grunt.task.current.nameArgs.split(':')[1];
+        var nameArgs = grunt.task.current.nameArgs;
 
-        var newTaskSetting = grunt.config.get(taskName);
-        newTaskSetting[nameArg].context = data;
-        grunt.config.set(taskName, newTaskSetting);
+        grunt.config(
+          nameArgs.replace(':', '.') + '.context',
+          data
+        );
       }
 
       // Write the destination file if 'dest' is specified
