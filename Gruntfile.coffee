@@ -52,6 +52,14 @@ module.exports = (grunt) ->
             data
         src: ['test/fixtures/*']
 
+      data_function_arg:
+        options:
+          asConfig: true
+          data: (data) ->
+            data.plan.next_time = data.plan.year + 1
+            data
+        src: ['test/fixtures/*']
+
       external_config:
         options:
           asConfig: 'testCfg'
@@ -71,8 +79,6 @@ module.exports = (grunt) ->
   # Actually load this plugin's task
   grunt.loadTasks 'tasks'
   
-  # Whenever the 'test' task is run, first clean the 'tmp' dir, then run this
-  # plugin's task(s), then test the result.
   grunt.registerTask 'test', [
     'clean'
     'jshint'

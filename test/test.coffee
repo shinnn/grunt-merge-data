@@ -26,10 +26,9 @@ defaults =
 
 describe 'Task target', ->
   describe 'with no options', ->
-    actualJSON = grunt.file.readJSON 'test/actual/no-options.json'
-    
     it 'should merge data of the source files simply.', ->
-      assert.deepEqual actualJSON, defaults
+      actual = grunt.file.readJSON 'test/actual/no-options.json'
+      assert.deepEqual actual, defaults
     
     it 'should output a JSON file without spaces.', ->
       actual = grunt.file.read 'test/actual/no-options.json'
@@ -51,7 +50,7 @@ describe 'Task target', ->
       assert.deepEqual actual, defaults
 
     describe "with 'data' option set to an object", ->
-      it "should set its own 'context' option with additional value.", ->
+      it "should set its own context with additional value.", ->
         actual = grunt.config 'merge_data.data_object.context'
         expected = clone defaults
         expected.attendance = true
@@ -59,12 +58,20 @@ describe 'Task target', ->
         assert.deepEqual actual, expected
 
     describe "with 'data' option set to a function", ->
-      it "should set its own 'context' option with the function's return.", ->
+      it "should set its own context with the function's return.", ->
         actual = grunt.config 'merge_data.data_function.context'
         expected = clone defaults
         expected.place = 'TOKYO'
 
         assert.deepEqual actual, expected
+        
+      describe "and using its 'data' argument", ->
+        it "should set its own context with the function's return.", ->
+          actual = grunt.config 'merge_data.data_function_arg.context'
+          expected = clone defaults
+          expected.plan.next_time = 2015
+
+          assert.deepEqual actual, expected
 
   describe "with 'asConfig' option set to 'testCfg'", ->
     it "should configure 'testCfg'.", ->
