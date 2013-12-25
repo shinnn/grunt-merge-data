@@ -88,7 +88,8 @@ options: {
       prev_year: data.year - 1
     };
   }
-}```
+}
+```
 
 #### options.space
 Type: `Number`, `String`
