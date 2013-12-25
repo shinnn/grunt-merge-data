@@ -78,3 +78,9 @@ describe 'Task target', ->
       actual = grunt.config 'testCfg'
 
       assert.deepEqual actual, defaults
+
+  describe "with 'asConfig' option set to ['array', 'cfg']", ->
+    it "should configure 'array.cfg'.", ->
+      actual = grunt.config 'array.cfg'
+
+      assert.deepEqual actual, defaults

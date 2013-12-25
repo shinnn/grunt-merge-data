@@ -60,13 +60,16 @@ module.exports = (grunt) ->
             data
         src: ['test/fixtures/*']
 
-      external_config:
+      config_string:
         options:
           asConfig: 'testCfg'
         src: ['test/fixtures/*']
-    
-    testCfg: {}
-    
+
+      config_array:
+        options:
+          asConfig: ['array', 'cfg']
+        src: ['test/fixtures/*']
+      
     mochaTest:
       test:
         options:

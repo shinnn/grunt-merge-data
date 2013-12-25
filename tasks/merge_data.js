@@ -28,11 +28,10 @@ module.exports = function (grunt) {
 
     }).forEach(function (filePath) {
       var basename = path.basename(filePath, path.extname(filePath));
-      var ext = path.extname(filePath).toLowerCase();
-      
-      if(ext === '.json') {
+
+      try {
         data[basename] = grunt.file.readJSON(filePath);
-      } else if (ext === '.yml' || ext === '.yaml') {
+      } catch (e) {
         data[basename] = grunt.file.readYAML(filePath);
       }
     });
@@ -50,7 +49,6 @@ module.exports = function (grunt) {
     
     // Iterate over all specified src/dest file groups
     this.files.forEach(function (file) {
-
       var data = mergeFileData(file.src);
       
       if (options.data) {
@@ -61,16 +59,23 @@ module.exports = function (grunt) {
         }
       }
       
-      if (grunt.util.kindOf(options.asConfig) === 'string') {
-        grunt.config(options.asConfig, data);
+      if (options.asConfig) {
+        var targetConfig;
+        if (grunt.util.kindOf(options.asConfig) === 'string') {
+          targetConfig = options.asConfig;
         
-      } else if (options.asConfig === true) {
-        var nameArgs = grunt.task.current.nameArgs;
-
-        grunt.config(
-          nameArgs.replace(':', '.') + '.context',
-          data
-        );
+        // Accept array of property name parts
+        } else if (grunt.util.kindOf(options.asConfig) === 'array') {
+          targetConfig = options.asConfig.join('.');
+          
+        } else if (options.asConfig === true) {
+          targetConfig = grunt.task.current.nameArgs
+                         .replace(':', '.') +
+                         '.context';
+        }
+        
+        grunt.config(targetConfig, data);
+        grunt.log.writeln('Config "' + targetConfig + '" updated.');
       }
 
       // Write the destination file if 'dest' is specified
@@ -83,7 +88,8 @@ module.exports = function (grunt) {
         grunt.log.writeln('File "' + file.dest + '" created.');
 
       } else if (!options.asConfig) {
-        //grunt.log.warn("Both destination and "' + filePath + '" not found.');
+        // when the task doesn't anything
+        grunt.log.warn('Neither destination path or config specified.');
       }
     });
   };
