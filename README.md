@@ -33,8 +33,8 @@ grunt.initConfig({
     your_target: {
       src: ['path/to/src/*.{json,y{,a}ml}']
       dest: 'path/to/dest/all.json'
-    },
-  },
+    }
+  }
 })
 ```
 
@@ -82,13 +82,35 @@ For example, when `option.data` is `{data1: 'something'}`, the data of `data1.js
 Type: `Number`, `String`
 Default value: `null`
 
-This option will be directly passed to the [`space` argument](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#space_argument) of `JSON.stringify`. You can control indent style of output file. 
+This option will be directly passed to the [`space` argument](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#space_argument) of `JSON.stringify`. You can control indent style of output file with this option. 
 
 #### options.asConfig
-Type: `String`, `Boolean`
+Type: `String`, `Array` `Boolean`
 Default value: `false`
 
-When you use this option, you don't need to specify destination file path of the task target.
+If you specified the project's Grunt configuration in this option, merge result will be assigned to that configuration. See [Accessing Config Data](http://gruntjs.com/api/grunt.config#accessing-config-data) to use this option.
+
+Or, if you set this option `true`, the `context` property of the task traget will be overwritten instead.
+
+For example, if the task is configured such as:
+
+```javascript
+grunt.initConfig({
+  merge_data: {
+    target1: {
+      options: {
+        asConfig: true
+      },
+      src: ['path/to/src/*.{json,y{,a}ml}']
+    }
+  }
+})
+``` 
+
+the merge result will be assigned to `merge_data.target1.context` when you run `grunt merge_data:target1`.
+
+When you use this option, you can also specify destination path of task target but don't need to.
+If you do so, at the same time the configuration will be updated, the JSON file will be output and both of them have the same value.
 
 ### Usage Examples
 
@@ -98,22 +120,24 @@ When you use this option, you don't need to specify destination file path of the
 grunt.initConfig({
   merge_data: {
     files: {
-      'dest/default_options.json': ['src/testing.json', 'src/123.json'],
+      'dest/all.json': ['src/data1.json', 'src/data2.json'],
     }
   }
 })
 ```
 
-#### Custom Options
+#### Updating other configuration
 
 ```js
 grunt.initConfig({
   merge_data: {
     options: {
-      asConfig: true
+      asConfig: 'someConfig.data' 
     },
-    src: ['src/testing.json', 'src/123.json']
+    src: ['src/data1.json', 'src/data2.json']
   }
+  
+  someConfig: {}
 })
 ```
 
