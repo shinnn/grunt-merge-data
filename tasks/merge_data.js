@@ -16,7 +16,8 @@ module.exports = function (grunt) {
   }
   
   function mergeFileData (sources) {
-    return sources.filter(function (filePath) {
+    var data = {};
+    sources.filter(function (filePath) {
       // Warn on and remove invalid source files (if nonull was set)
       if (!grunt.file.exists(filePath)) {
         grunt.log.warn('Source file "' + filePath + '" not found.');
@@ -25,24 +26,18 @@ module.exports = function (grunt) {
         return true;
       }
 
-    }).map(function (filePath) {
-      var result = {
-        basename: path.basename(filePath, path.extname(filePath))
-      };
-
+    }).forEach(function (filePath) {
+      var basename = path.basename(filePath, path.extname(filePath));
       var ext = path.extname(filePath).toLowerCase();
+      
       if(ext === '.json') {
-        result.data = grunt.file.readJSON(filePath);
+        data[basename] = grunt.file.readJSON(filePath);
       } else if (ext === '.yml' || ext === '.yaml') {
-        result.data = grunt.file.readYAML(filePath);
+        data[basename] = grunt.file.readYAML(filePath);
       }
-
-      return result;
-
-    }).reduce(function (base, current) {
-      base[current.basename] = current.data;
-      return base;
-    }, {});
+    });
+    
+    return data;
   }
   
   var mergeDataTask = function () {
@@ -60,7 +55,7 @@ module.exports = function (grunt) {
       
       if (options.data) {
         if (typeof options.data === 'function') {
-          mergeObjects(data, options.data());
+          mergeObjects(data, options.data(data));
         } else {
           mergeObjects(data, options.data);
         }

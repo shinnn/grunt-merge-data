@@ -1,14 +1,12 @@
 ---
   -
     name: Bob
-    gender: male
-    skills: [C++, Java]
+    skills: [C, Java]
   -
     name: Sue
-    gender: female
     skills: 
-      - javascript
+      - JavaScript
       - altJS:
-        - CoffeeScript
-        - TypeScript
+        - Opal
+        - Roy
         

@@ -40,8 +40,8 @@ grunt.initConfig({
 
 Running this task with `grunt merge_data` command will merge all data of specified JSON or YAML files into a single JavaScript object, and write it as a JSON file.
 
-Each of the data will be formatted in `{<basename of file>: <data of file>}` form.
-For example, when the source files of the task target are two data files, such as:
+Each of the data will be formatted as `{<basename of file>: <data of file>}`.
+For example, when the source path of task target specifies two files, such as:
 
 data1.json:
 
@@ -75,14 +75,14 @@ Default value: `null`
 
 This is an additional data that will be merged together with the sources files.
 
-This option will overrides existing data of the source files.
+This option will overrides existing data of source files.
 For example, when `option.data` is `{data1: 'something'}`, the data of `data1.json` won't be reflected in the output.
 
 #### options.space
 Type: `Number`, `String`
 Default value: `null`
 
-This option will be directly passed to `space` argument of `JSON.stringify`. You can control indent style of output file with this option. 
+This option will be directly passed to the [`space` argument](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#space_argument) of `JSON.stringify`. You can control indent style of output file. 
 
 #### options.asConfig
 Type: `String`, `Boolean`
