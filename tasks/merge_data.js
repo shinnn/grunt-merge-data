@@ -54,14 +54,14 @@ module.exports = function (grunt) {
       var data = mergeFileData(file.src);
       
       if (options.data) {
-        if (typeof options.data === 'function') {
+        if (grunt.util.kindOf(options.data) === 'function') {
           mergeObjects(data, options.data(data));
         } else {
           mergeObjects(data, options.data);
         }
       }
       
-      if (typeof options.asConfig === 'string') {
+      if (grunt.util.kindOf(options.asConfig) === 'string') {
         grunt.config(options.asConfig, data);
         
       } else if (options.asConfig === true) {
