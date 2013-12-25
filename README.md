@@ -78,6 +78,18 @@ This is an additional data that will be merged together with the sources files.
 This option will overrides existing data of source files.
 For example, when `option.data` is `{data1: 'something'}`, the data of `data1.json` won't be reflected in the output.
 
+This value also might be a function taking a data object of source files as the first argument and returns a data object.
+
+```javascript
+options: {
+  data: function (data) {
+    return {
+      next_year: data.year + 1,
+      prev_year: data.year - 1
+    };
+  }
+}```
+
 #### options.space
 Type: `Number`, `String`
 Default value: `null`
@@ -118,7 +130,7 @@ If you do so, at the same time the configuration will be updated, the JSON file 
 
 ```javascript
 grunt.initConfig({
-  merge_data: {
+  merge_data: {  
     files: {
       'dest/all.json': ['src/data1.json', 'src/data2.json'],
     }
