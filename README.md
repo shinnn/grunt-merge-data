@@ -162,3 +162,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Copyright (c) 2013 [Shinnosuke Watanabe](https://github.com/shinnn).
 Licensed under the MIT license.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shinnn/grunt-merge-data/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
