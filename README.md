@@ -3,6 +3,7 @@
 [![NPM version](https://badge.fury.io/js/grunt-merge-data.png)](http://badge.fury.io/js/grunt-merge-data)
 [![Build Status](https://travis-ci.org/shinnn/grunt-merge-data.png?branch=master)](https://travis-ci.org/shinnn/grunt-merge-data)
 [![devDependency Status](https://david-dm.org/shinnn/grunt-merge-data/dev-status.png)](https://david-dm.org/shinnn/grunt-merge-data#info=devDependencies)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shinnn/grunt-merge-data/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ## Getting Started
 This plugin requires Grunt.
@@ -101,9 +102,9 @@ This option will be directly passed to the [`space` argument](https://developer.
 Type: `String`, `Array` `Boolean`
 Default value: `false`
 
-If you specified the project's Grunt configuration in this option, merge result will be assigned to that configuration. See [Accessing Config Data](http://gruntjs.com/api/grunt.config#accessing-config-data) to use this option.
+If you specified the project's Grunt configuration in this option, merge result will be assigned to it. See [Accessing Config Data](http://gruntjs.com/api/grunt.config#accessing-config-data) to use this option.
 
-Or, if you set this option `true`, the `context` property of the task traget will be overwritten instead.
+Or, if you set this option `true`, the `context` property of the task traget will be overwritten with the merge result.
 
 For example, if the task is configured such as:
 
@@ -120,9 +121,9 @@ grunt.initConfig({
 })
 ``` 
 
-the merge result will be assigned to `merge_data.target1.context` when you run `grunt merge_data:target1`.
+the merge result will be assigned to `merge_data.target1.context`.
 
-When you use this option, you can also specify destination path of task target but don't need to.
+When you use this option, you can also specify the destination path of task target but don't need to.
 If you do so, at the same time the configuration will be updated, the JSON file will be output. Both the configuration and the JSON file will have the same value.
 
 ### Usage Examples
@@ -139,7 +140,7 @@ grunt.initConfig({
 })
 ```
 
-#### Updating other configuration
+#### Updating Grunt configuration
 
 ```js
 grunt.initConfig({
@@ -160,9 +161,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## License
 
-Copyright (c) 2013 [Shinnosuke Watanabe](https://github.com/shinnn).
+Copyright (c) 2013 - 2014 [Shinnosuke Watanabe](https://github.com/shinnn).
 Licensed under the MIT license.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shinnn/grunt-merge-data/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
