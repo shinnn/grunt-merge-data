@@ -124,7 +124,7 @@ grunt.initConfig({
 the merge result will be assigned to `merge_data.target1.context`.
 
 When you use this option, you can also specify the destination path of task target but don't need to.
-If you do so, at the same time the configuration will be updated, the JSON file will be output. Both the configuration and the JSON file will have the same value.
+If you do so, at the same time the Grunt configuration will be updated, the JSON file will be output. Both the configuration and the JSON file will have the same value.
 
 ### Usage Examples
 

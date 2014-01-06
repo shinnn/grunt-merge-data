@@ -1,5 +1,5 @@
 # grunt-merge-data
-# Copyright (c) 2013 Shinnosuke Watanabe
+# Copyright (c) 2013 - 2014 Shinnosuke Watanabe
 # Licensed under the MIT license.
 
 module.exports = (grunt) ->
