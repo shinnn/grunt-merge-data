@@ -1,6 +1,6 @@
 {
   "name": "grunt-merge-data",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Merge multiple data into a file or Grint config",
   "homepage": "https://github.com/shinnn/grunt-merge-data",
   "repository": {
