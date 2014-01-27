@@ -1,7 +1,7 @@
 {
   "name": "grunt-merge-data",
   "version": "0.2.3",
-  "description": "Merge multiple data into a file or Grint config",
+  "description": "Grunt task for merging multiple data into a JSON file or Grint config",
   "homepage": "https://github.com/shinnn/grunt-merge-data",
   "repository": {
     "type": "git",
@@ -37,10 +37,10 @@
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-clean": "~0.5.0",
-    "load-grunt-tasks": "~0.2.1",
+    "load-grunt-tasks": "~0.3.0",
     "jshint-stylish": "~0.1.4",
     "grunt-release": "~0.6.0",
-    "grunt-mocha-test": "~0.8.1",
+    "grunt-mocha-test": "~0.8.2",
     "clone": "~0.1.11"
   },
   "scripts": {
