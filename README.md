@@ -6,6 +6,7 @@
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shinnn/grunt-merge-data/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ## Getting Started
+
 This plugin requires Grunt.
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
@@ -71,8 +72,8 @@ they will be merged into a JSON file like this:
 ### Options
 
 #### options.data
-Type: `Object`, `Function`
-Default value: `null`
+Type: `Object|Function`
+Default: `null`
 
 This is an additional data that will be merged together with the sources files.
 
@@ -93,14 +94,14 @@ options: {
 ```
 
 #### options.space
-Type: `Number`, `String`
-Default value: `null`
+Type: `Number|String`
+Default: `null`
 
 This option will be directly passed to the [`space` argument](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#space_argument) of `JSON.stringify`. You can control indent style of output file with this option. 
 
 #### options.asConfig
-Type: `String`, `Array` `Boolean`
-Default value: `false`
+Type: `String|Array|Boolean`
+Default: `false`
 
 If you specified the project's Grunt configuration in this option, merge result will be assigned to it. See [Accessing Config Data](http://gruntjs.com/api/grunt.config#accessing-config-data) to use this option.
 
@@ -142,7 +143,7 @@ grunt.initConfig({
 
 #### Updating Grunt configuration
 
-```js
+```javascript
 grunt.initConfig({
   merge_data: {
     options: {
@@ -162,4 +163,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## License
 
 Copyright (c) 2013 - 2014 [Shinnosuke Watanabe](https://github.com/shinnn).
-Licensed under the MIT license.
+Licensed under [the MIT license](./LICENSE).
