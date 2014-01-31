@@ -28,11 +28,18 @@ module.exports = function (grunt) {
 
     }).forEach(function (filePath) {
       var basename = path.basename(filePath, path.extname(filePath));
-
-      try {
+      var ext = path.extname(filePath).toLowerCase();
+      
+      if(ext === '.json') {
         data[basename] = grunt.file.readJSON(filePath);
-      } catch (e) {
+      } else if (ext === '.yml' || ext === '.yaml') {
         data[basename] = grunt.file.readYAML(filePath);
+      } else {
+        try {
+          data[basename] = grunt.file.readJSON(filePath);
+        } catch (e) {
+          data[basename] = grunt.file.readYAML(filePath);
+        }
       }
     });
     
