@@ -40,7 +40,7 @@
     "load-grunt-tasks": "~0.3.0",
     "jshint-stylish": "~0.1.4",
     "grunt-release": "~0.6.0",
-    "grunt-mocha-test": "~0.8.2",
+    "grunt-mocha-test": "~0.9.0",
     "clone": "~0.1.11"
   },
   "scripts": {
