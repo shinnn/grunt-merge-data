@@ -1,7 +1,7 @@
 {
   "name": "grunt-merge-data",
   "version": "0.2.5",
-  "description": "Grunt task for merging multiple data into a JSON file or Grint config",
+  "description": "Grunt task for merging multiple data into a JSON file or Grunt config",
   "homepage": "https://github.com/shinnn/grunt-merge-data",
   "repository": {
     "type": "git",
@@ -29,10 +29,14 @@
   },
   "licenses": [
     {
-      "type": "MIT"
+      "type": "MIT",
+      "url": "https://github.com/shinnn/grunt-merge-data/blob/master/LICENSE"
     }
   ],
   "dependencies": {},
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.8.0",
@@ -41,7 +45,7 @@
     "grunt-mocha-test": "~0.9.0",
     "load-grunt-tasks": "~0.3.0",
     "time-grunt": "~0.2.9",
-    "jshint-stylish": "~0.1.4",
+    "jshint-stylish": "~0.1.5",
     "clone": "~0.1.11"
   },
   "scripts": {
