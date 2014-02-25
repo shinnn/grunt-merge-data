@@ -5,6 +5,8 @@
 [![devDependency Status](https://david-dm.org/shinnn/grunt-merge-data/dev-status.png)](https://david-dm.org/shinnn/grunt-merge-data#info=devDependencies)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shinnn/grunt-merge-data/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
+Merge multiple data into a single JSON file or Grunt config, based on their basename
+
 ## Getting Started
 
 This plugin requires Grunt.
