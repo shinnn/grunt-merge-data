@@ -5,8 +5,8 @@
 module.exports = (grunt) ->
   'use strict'
   
-  require('load-grunt-tasks') grunt
   require('time-grunt') grunt
+  require('load-grunt-tasks') grunt
     
   grunt.initConfig
     jshint:
