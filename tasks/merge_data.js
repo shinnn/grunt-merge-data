@@ -59,7 +59,7 @@ module.exports = function (grunt) {
       var data = mergeFileData(file.src);
       
       if (options.data) {
-        if (grunt.util.kindOf(options.data) === 'function') {
+        if (typeof options.data === 'function') {
           mergeObjects(data, options.data(data));
         } else {
           mergeObjects(data, options.data);
@@ -68,17 +68,16 @@ module.exports = function (grunt) {
       
       if (options.asConfig) {
         var targetConfig;
-        if (grunt.util.kindOf(options.asConfig) === 'string') {
+        if (typeof options.asConfig === 'string') {
           targetConfig = options.asConfig;
         
         // Accept array of property name parts
-        } else if (grunt.util.kindOf(options.asConfig) === 'array') {
+        } else if (Array.isArray(options.asConfig)) {
           targetConfig = options.asConfig.join('.');
           
         } else if (options.asConfig === true) {
           targetConfig = grunt.task.current.nameArgs
-                         .replace(':', '.') +
-                         '.context';
+                           .replace(':', '.') + '.context';
         }
         
         grunt.config(targetConfig, data);
