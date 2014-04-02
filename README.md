@@ -1,8 +1,8 @@
 # grunt-merge-data
 
-[![NPM version](https://badge.fury.io/js/grunt-merge-data.png)](http://badge.fury.io/js/grunt-merge-data)
-[![Build Status](https://travis-ci.org/shinnn/grunt-merge-data.png?branch=master)](https://travis-ci.org/shinnn/grunt-merge-data)
-[![devDependency Status](https://david-dm.org/shinnn/grunt-merge-data/dev-status.png)](https://david-dm.org/shinnn/grunt-merge-data#info=devDependencies)
+[![NPM version](https://badge.fury.io/js/grunt-merge-data.svg)](http://badge.fury.io/js/grunt-merge-data)
+[![Build Status](https://travis-ci.org/shinnn/grunt-merge-data.svg?branch=master)](https://travis-ci.org/shinnn/grunt-merge-data)
+[![devDependency Status](https://david-dm.org/shinnn/grunt-merge-data/dev-status.svg?theme=shields.io)](https://david-dm.org/shinnn/grunt-merge-data#info=devDependencies)
 
 Merge multiple data into a single JSON file or Grunt config, based on their basename
 
