@@ -11,10 +11,7 @@ module.exports = (grunt) ->
   grunt.initConfig
     jshint:
       options:
-        camelcase: true
-        trailing: true
-        indent: 2
-        node: true
+        jshintrc: '.jshintrc'
         reporter: require 'jshint-stylish'
       all: ['tasks/*.js']
 
