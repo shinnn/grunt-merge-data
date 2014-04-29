@@ -62,20 +62,20 @@ module.exports = function(grunt) {
           }
         }
       
-        if (options.asConfig) {
-          var targetConfig;
-          if (typeof options.asConfig === 'string') {
-            targetConfig = options.asConfig;
+        var targetConfig;
+        if (typeof options.asConfig === 'string') {
+          targetConfig = options.asConfig;
+      
+        // Accept array of property name parts
+        } else if (Array.isArray(options.asConfig)) {
+          targetConfig = options.asConfig.join('.');
         
-            // Accept array of property name parts
-          } else if (Array.isArray(options.asConfig)) {
-            targetConfig = options.asConfig.join('.');
-          
-          } else if (options.asConfig === true) {
-            targetConfig = grunt.task.current.nameArgs
-            .replace(':', '.') + '.context';
-          }
-        
+        } else if (options.asConfig === true) {
+          targetConfig = grunt.task.current.nameArgs
+          .replace(':', '.') + '.context';
+        }
+      
+        if (targetConfig) {
           grunt.config(targetConfig, data);
           grunt.log.writeln('Config ' + chalk.green(targetConfig) + ' updated.');
         }
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
           // Print a success message
           grunt.log.writeln('File ' + chalk.cyan(file.dest) + ' created.');
 
-        } else if (!options.asConfig) {
+        } else if (!targetConfig) {
           // when the task doesn't anything
           grunt.log.warn('Neither destination path or config specified.');
         }
