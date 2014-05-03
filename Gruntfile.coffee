@@ -13,10 +13,27 @@ module.exports = (grunt) ->
       options:
         jshintrc: '.jshintrc'
         reporter: require 'jshint-stylish'
-      all: ['tasks/*.js']
+      all: ['src/merge_data.js', 'test/test.js']
 
     clean:
       tests: ['test/actual/*']
+    
+    es6transpiler:
+      task:
+        src: ['src/merge_data.js']
+        dest: 'tasks/merge_data.js'
+      test:
+        options:
+          globals:
+            describe: false
+            it: false
+        src: ['test/test.js']
+        dest: 'tmp/test-es5.js'
+    
+    espower:
+      test:
+        src: ['<%= es6transpiler.test.dest %>']
+        dest: '<%= es6transpiler.test.dest %>'
     
     merge_data:
       no_options:
@@ -72,18 +89,21 @@ module.exports = (grunt) ->
       test:
         options:
           reporter: 'spec'
-        src: ['test/*.coffee']
+        src: ['tmp/test.js']
 
     release:
       options: {}
-    
-  # Actually load this plugin's task
-  grunt.loadTasks 'tasks'
+  
+  grunt.registerTask 'run_this_plugin', ->
+    grunt.loadTasks 'tasks'
+    grunt.task.run ['merge_data']
   
   grunt.registerTask 'test', [
     'clean'
     'jshint'
-    'merge_data'
+    'es6transpiler'
+    'run_this_plugin'
+    'espower'
     'mochaTest'
   ]
   

@@ -4,5 +4,7 @@
   "indent": 2,
   "quotmark": "single",
   "browser": false,
-  "node": true
+  "node": true,
+  "esnext": true,
+  "mocha": true
 }

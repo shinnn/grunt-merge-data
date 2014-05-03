@@ -11,15 +11,15 @@ var objectAssign = require('object-assign');
 module.exports = function(grunt) {
   function mergeFileData(sources) {
     var data = {};
-    sources.filter(function(filePath) {
+    sources.filter(filePath => {
       // Warn on and remove invalid source files (if nonull was set)
       if (!grunt.file.exists(filePath)) {
-        grunt.log.warn('Source file "' + filePath + '" not found.');
+        grunt.log.warn(`Source file ${ filePath } not found.`);
         return false;
       } else {
         return true;
       }
-    }).forEach(function(filePath) {
+    }).forEach(filePath => {
       var basename = path.basename(filePath, path.extname(filePath));
       var ext = path.extname(filePath).toLowerCase();
       
@@ -51,8 +51,8 @@ module.exports = function(grunt) {
       });
     
       // Iterate over all specified src/dest file groups
-      this.files.forEach(function(file) {
-        var data = mergeFileData(file.src);
+      this.files.forEach(file => {
+        var data  = mergeFileData(file.src);
       
         if (options.data) {
           if (typeof options.data === 'function') {
@@ -77,7 +77,7 @@ module.exports = function(grunt) {
       
         if (targetConfig) {
           grunt.config(targetConfig, data);
-          grunt.log.writeln('Config ' + chalk.green(targetConfig) + ' updated.');
+          grunt.log.writeln(`Config ${ chalk.green(targetConfig) } updated.`);
         }
 
         // Write the destination file if 'dest' is specified
@@ -87,10 +87,10 @@ module.exports = function(grunt) {
             JSON.stringify(data, null, options.space)
           );
           // Print a success message
-          grunt.log.writeln('File ' + chalk.cyan(file.dest) + ' created.');
+          grunt.log.writeln(`File ${ chalk.cyan(file.dest) } created.`);
 
         } else if (!targetConfig) {
-          // when the task doesn't anything
+          // when the task does nothing
           grunt.log.warn('Neither destination path or config specified.');
         }
       });
