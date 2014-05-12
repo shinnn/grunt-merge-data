@@ -27,7 +27,7 @@ var plan = {
 var defaults = {member, plan}; // jshint ignore:line
 
 describe('Task target', () => {
-  describe('with no options', () => {
+  describe('without any options', () => {
     it('should merge data of the source files simply.', () => {
       assert.deepEqual(
         grunt.file.readJSON('test/actual/no-options.json'),
@@ -41,7 +41,7 @@ describe('Task target', () => {
       );
     });
   });
-  describe('with "space" option set to 1', () => {
+  describe('space: 1', () => {
     it('should output a spaced-style JSON file', () => {
       assert.strictEqual(
         grunt.file.read('test/actual/spaced-style.json'),
@@ -49,14 +49,14 @@ describe('Task target', () => {
       );
     });
   });
-  describe('with "asConfig" option set to true', () => {
+  describe('asConfig: true', () => {
     it('should set its own "context" option.', () => {
       assert.deepEqual(
         grunt.config('merge_data.as_config.context'),
         defaults
       );
     });
-    describe('with "data" option set to an object', () => {
+    describe('data: Object', () => {
       it('should set its own context with additional value.', () => {
         let actual = grunt.config('merge_data.data_object.context');
         let expected = clone(defaults);
@@ -64,7 +64,7 @@ describe('Task target', () => {
         assert.deepEqual(actual, expected);
       });
     });
-    describe('with "data" option set to a function', () => {
+    describe('data: Function', () => {
       it('should set its own context with the function\'s return.', () => {
         let actual = grunt.config('merge_data.data_function.context');
         let expected = clone(defaults);
@@ -81,14 +81,19 @@ describe('Task target', () => {
       });
     });
   });
-  describe('with "asConfig" option set to "testCfg"', () => {
+  describe('asConfig: "testCfg"', () => {
     it('should configure "testCfg".', () => {
       assert.deepEqual(grunt.config('testCfg'), defaults);
     });
   });
-  describe('with "asConfig" option set to ["array", "cfg"]', () => {
-    it('should configure "array.cfg".', () => {
-      assert.deepEqual(grunt.config('array.cfg'), defaults);
+  describe('asConfig: "nested.cfg"', () => {
+    it('should configure "nested.cfg".', () => {
+      assert.deepEqual(grunt.config('nested.cfg'), defaults);
+    });
+  });
+  describe('asConfig: ["array", "nested", "cfg"]', () => {
+    it('should configure "array.nested.cfg".', () => {
+      assert.deepEqual(grunt.config('array.nested.cfg'), defaults);
     });
   });
 });

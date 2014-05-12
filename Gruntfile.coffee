@@ -80,16 +80,21 @@ module.exports = (grunt) ->
           asConfig: 'testCfg'
         src: ['test/fixtures/*']
 
+      config_string_nested:
+        options:
+          asConfig: 'nested.cfg'
+        src: ['test/fixtures/*']
+
       config_array:
         options:
-          asConfig: ['array', 'cfg']
+          asConfig: ['array', 'nested', 'cfg']
         src: ['test/fixtures/*']
       
     mochaTest:
       test:
         options:
           reporter: 'spec'
-        src: ['tmp/test.js']
+        src: ['<%= es6transpiler.test.dest %>']
 
     release:
       options: {}
