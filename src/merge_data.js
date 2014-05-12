@@ -8,7 +8,7 @@ var path = require('path');
 var chalk = require('chalk');
 var objectAssign = require('object-assign');
 
-module.exports = function(grunt) {
+module.exports = grunt => {
   function mergeFileData(sources) {
     var data = {};
     sources.filter(filePath => {
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
   grunt.registerMultiTask(
     'merge_data',
     'Merge multiple data into a file or Grunt config.',
-    function() {
+    function mergeDataTask() {
       // Merge task-specific and/or target-specific options with these defaults
       var options = this.options({
         data: null,
