@@ -16,7 +16,7 @@ module.exports = (grunt) ->
       all: ['src/merge_data.js', 'test/test.js']
 
     clean:
-      tests: ['test/actual/*']
+      all: ['tasks', 'test/actual/*', 'tmp']
     
     es6transpiler:
       task:
