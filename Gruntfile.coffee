@@ -4,10 +4,10 @@
 
 module.exports = (grunt) ->
   'use strict'
-  
+
   require('time-grunt') grunt
   require('load-grunt-tasks') grunt
-    
+
   grunt.initConfig
     jshint:
       options:
@@ -17,7 +17,7 @@ module.exports = (grunt) ->
 
     clean:
       all: ['tasks', 'test/actual/*', 'tmp']
-    
+
     es6transpiler:
       task:
         src: ['src/merge_data.js']
@@ -29,12 +29,12 @@ module.exports = (grunt) ->
             it: false
         src: ['test/test.js']
         dest: 'tmp/test-es5.js'
-    
+
     espower:
       test:
         src: ['<%= es6transpiler.test.dest %>']
         dest: '<%= es6transpiler.test.dest %>'
-    
+
     merge_data:
       no_options:
         src: ['test/fixtures/*']
@@ -89,7 +89,7 @@ module.exports = (grunt) ->
         options:
           asConfig: ['array', 'nested', 'cfg']
         src: ['test/fixtures/*']
-      
+
     mochaTest:
       test:
         options:
@@ -98,11 +98,11 @@ module.exports = (grunt) ->
 
     release:
       options: {}
-  
+
   grunt.registerTask 'run_this_plugin', ->
     grunt.loadTasks 'tasks'
     grunt.task.run ['merge_data']
-  
+
   grunt.registerTask 'test', [
     'clean'
     'jshint'
@@ -111,5 +111,5 @@ module.exports = (grunt) ->
     'espower'
     'mochaTest'
   ]
-  
+
   grunt.registerTask 'default', ['test']

@@ -22,7 +22,7 @@ module.exports = grunt => {
     }).forEach(filePath => {
       var basename = path.basename(filePath, path.extname(filePath));
       var ext = path.extname(filePath).toLowerCase();
-      
+
       if (ext === '.json') {
         data[basename] = grunt.file.readJSON(filePath);
       } else if (ext === '.yml' || ext === '.yaml') {
@@ -35,10 +35,10 @@ module.exports = grunt => {
         }
       }
     });
-    
+
     return data;
   }
-  
+
   grunt.registerMultiTask(
     'merge_data',
     'Merge multiple data into a file or Grunt config.',
@@ -49,11 +49,11 @@ module.exports = grunt => {
         space: null,
         asConfig: false
       });
-    
+
       // Iterate over all specified src/dest file groups
       this.files.forEach(file => {
         var data  = mergeFileData(file.src);
-      
+
         if (options.data) {
           if (typeof options.data === 'function') {
             objectAssign(data, options.data(data));
@@ -61,20 +61,20 @@ module.exports = grunt => {
             objectAssign(data, options.data);
           }
         }
-      
+
         var targetConfig;
         if (typeof options.asConfig === 'string') {
           targetConfig = options.asConfig;
-      
+
         // Accept array of property name parts
         } else if (Array.isArray(options.asConfig)) {
           targetConfig = options.asConfig.join('.');
-        
+
         } else if (options.asConfig === true) {
           targetConfig = grunt.task.current.nameArgs
           .replace(':', '.') + '.context';
         }
-      
+
         if (targetConfig) {
           grunt.config(targetConfig, data);
           grunt.log.writeln(`Config ${ chalk.green(targetConfig) } updated.`);
