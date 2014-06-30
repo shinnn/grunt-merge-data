@@ -6,9 +6,14 @@ module.exports = (grunt) ->
   'use strict'
 
   require('time-grunt') grunt
-  require('load-grunt-tasks') grunt
+  require('jit-grunt') grunt, {
+    es6transpiler: 'grunt-es6-transpiler'
+  }
 
   grunt.initConfig
+    jsonlint:
+      pkg: ['package.json']
+
     jshint:
       options:
         jshintrc: '.jshintrc'
@@ -103,10 +108,15 @@ module.exports = (grunt) ->
     grunt.loadTasks 'tasks'
     grunt.task.run ['merge_data']
 
-  grunt.registerTask 'test', [
+  grunt.registerTask 'build', [
     'clean'
+    'jsonlint'
     'jshint'
     'es6transpiler'
+  ]
+
+  grunt.registerTask 'test', [
+    'build'
     'run_this_plugin'
     'espower'
     'mochaTest'
