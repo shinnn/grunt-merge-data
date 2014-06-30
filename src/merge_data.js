@@ -14,7 +14,7 @@ module.exports = grunt => {
     sources.filter(filePath => {
       // Warn on and remove invalid source files (if nonull was set)
       if (!grunt.file.exists(filePath)) {
-        grunt.log.warn(`Source file ${ filePath } not found.`);
+        grunt.log.warn(`Source file ${filePath} not found.`);
         return false;
       } else {
         return true;
@@ -43,14 +43,12 @@ module.exports = grunt => {
     'merge_data',
     'Merge multiple data into a file or Grunt config.',
     function mergeDataTask() {
-      // Merge task-specific and/or target-specific options with these defaults
       var options = this.options({
         data: null,
         space: null,
         asConfig: false
       });
 
-      // Iterate over all specified src/dest file groups
       this.files.forEach(file => {
         var data  = mergeFileData(file.src);
 
@@ -77,7 +75,7 @@ module.exports = grunt => {
 
         if (targetConfig) {
           grunt.config(targetConfig, data);
-          grunt.log.writeln(`Config ${ chalk.green(targetConfig) } updated.`);
+          grunt.log.writeln(`Config ${chalk.green(targetConfig)} updated.`);
         }
 
         // Write the destination file if 'dest' is specified
@@ -87,7 +85,7 @@ module.exports = grunt => {
             JSON.stringify(data, null, options.space)
           );
           // Print a success message
-          grunt.log.writeln(`File ${ chalk.cyan(file.dest) } created.`);
+          grunt.log.writeln(`File ${chalk.cyan(file.dest)} created.`);
 
         } else if (!targetConfig) {
           // when the task does nothing
