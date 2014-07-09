@@ -24,14 +24,12 @@ module.exports = (grunt) ->
       all: ['tasks', 'test/actual/*', 'tmp']
 
     es6transpiler:
+      options:
+        environments: ['node', 'mocha']
       task:
         src: ['src/merge_data.js']
         dest: 'tasks/merge_data.js'
       test:
-        options:
-          globals:
-            describe: false
-            it: false
         src: ['test/test.js']
         dest: 'tmp/test-es5.js'
 

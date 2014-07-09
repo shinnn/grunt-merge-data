@@ -5,6 +5,7 @@
 'use strict';
 
 var path = require('path');
+
 var chalk = require('chalk');
 var objectAssign = require('object-assign');
 
