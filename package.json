@@ -15,6 +15,14 @@
     "email": "snnskwtnb@gmail.com",
     "url": "https://github.com/shinnn"
   },
+  "scripts": {
+    "test": "grunt test",
+    "start": "grunt"
+  },
+  "files": [
+    "tasks",
+    "LICENSE"
+  ],  
   "keywords": [
     "gruntplugin",
     "data",
@@ -55,9 +63,5 @@
     "jshint-stylish": "^1.0.0",
     "power-assert": "^0.10.0",
     "time-grunt": "^1.0.0"
-  },
-  "scripts": {
-    "test": "grunt test",
-    "start": "grunt"
   }
 }
