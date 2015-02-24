@@ -2,14 +2,7 @@
   "name": "grunt-merge-data",
   "version": "0.4.3",
   "description": "Grunt task for merging multiple data into a JSON file or Grunt config",
-  "homepage": "https://github.com/shinnn/grunt-merge-data",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/shinnn/grunt-merge-data.git"
-  },
-  "bugs": {
-    "url": "https://github.com/shinnn/grunt-merge-data/issues"
-  },
+  "repository": "shinnn/grunt-merge-data",
   "author": {
     "name": "Shinnosuke Watanabe",
     "email": "snnskwtnb@gmail.com",
@@ -20,9 +13,8 @@
     "start": "grunt"
   },
   "files": [
-    "tasks",
-    "LICENSE"
-  ],  
+    "tasks"
+  ],
   "keywords": [
     "gruntplugin",
     "data",
@@ -33,9 +25,6 @@
     "merger",
     "basename"
   ],
-  "engines": {
-    "node": ">= 0.10.0"
-  },
   "licenses": [
     {
       "type": "MIT",
@@ -43,25 +32,19 @@
     }
   ],
   "dependencies": {
-    "chalk": "^0.5.1",
+    "chalk": "^1.0.0",
     "object-assign": "^2.0.0"
   },
-  "peerDependencies": {
-    "grunt": "~0.4.1"
-  },
   "devDependencies": {
-    "clone": "~0.1.18",
+    "clone": "^1.0.0",
     "grunt": "^0.4.5",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-es6-transpiler": "^ 1.0.1",
-    "grunt-espower": "^0.10.0",
+    "grunt-babel": "^4.0.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-jshint": "^0.11.0",
     "grunt-jsonlint": "^1.0.4",
-    "grunt-mocha-test": "^0.12.4",
-    "grunt-release": "~0.7.0",
-    "jit-grunt": "^0.9.0",
-    "jshint-stylish": "^1.0.0",
-    "power-assert": "^0.10.0",
-    "time-grunt": "^1.0.0"
+    "grunt-mocha-test": "^0.12.7",
+    "jit-grunt": "^0.9.1",
+    "jshint-stylish": "^1.0.1",
+    "time-grunt": "^1.1.0"
   }
 }
