@@ -1,31 +1,31 @@
 # grunt-merge-data
 
-[![NPM version](https://badge.fury.io/js/grunt-merge-data.svg)](http://badge.fury.io/js/grunt-merge-data)
+[![NPM version](https://img.shields.io/npm/v/grunt-merge-data.svg)](https://www.npmjs.com/package/grunt-merge-data)
 [![Build Status](https://travis-ci.org/shinnn/grunt-merge-data.svg?branch=master)](https://travis-ci.org/shinnn/grunt-merge-data)
+[![Build status](https://ci.appveyor.com/api/projects/status/ckiescfon6xcce0f?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/grunt-merge-data)
 [![Dependency Status](https://david-dm.org/shinnn/grunt-merge-data.svg)](https://david-dm.org/shinnn/grunt-merge-data)
 [![devDependency Status](https://david-dm.org/shinnn/grunt-merge-data/dev-status.svg)](https://david-dm.org/shinnn/grunt-merge-data#info=devDependencies)
 
 Merge multiple data into a single JSON file or Grunt config, based on their basename
 
-## Getting Started
+## Installation
 
-This plugin requires Grunt.
+[Use npm](https://docs.npmjs.com/cli/install).
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
-
-```shell
-npm install grunt-merge-data --save-dev
+```sh
+npm install --save-dev grunt-merge-data
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+## Usage
+
+The plugin may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```javascript
 grunt.loadNpmTasks('grunt-merge-data');
 ```
 
-## The `merge_data` task
+### The `merge_data` task
 
-### Overview
 In your project's Gruntfile, add a section named `merge_data` to the data object passed into `grunt.initConfig()`.
 
 ```javascript
@@ -42,7 +42,7 @@ grunt.initConfig({
 })
 ```
 
-Running this task with `grunt merge_data` command will merge all data of specified JSON or YAML files into a single JavaScript object, and write it as a JSON file.
+Running `merge_data` task task with `grunt merge_data` command will merge all data of specified JSON or YAML files into a single JavaScript object, and write it as a JSON file.
 
 Each of the data will be formatted as `{<basename of file>: <data of file>}`.
 For example, when the source path of task target specifies two files, such as:
@@ -158,11 +158,8 @@ grunt.initConfig({
 })
 ```
 
-## Contributing
-
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
 ## License
 
-Copyright (c) 2013 - 2014 [Shinnosuke Watanabe](https://github.com/shinnn).
+Copyright (c) 2013 - 2015 [Shinnosuke Watanabe](https://github.com/shinnn).
+
 Licensed under [the MIT license](./LICENSE).
