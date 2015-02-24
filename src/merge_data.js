@@ -1,5 +1,5 @@
 // grunt-merge-data
-// Copyright (c) 2013 - 2014 Shinnosuke Watanabe
+// Copyright (c) 2013 - 2015 Shinnosuke Watanabe
 // Licensed under the MIT license
 
 'use strict';
@@ -65,7 +65,7 @@ module.exports = grunt => {
         if (typeof options.asConfig === 'string') {
           targetConfig = options.asConfig;
 
-        // Accept array of property name parts
+        // Accept an array of property name parts
         } else if (Array.isArray(options.asConfig)) {
           targetConfig = options.asConfig.join('.');
 
