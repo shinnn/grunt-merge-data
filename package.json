@@ -1,6 +1,6 @@
 {
   "name": "grunt-merge-data",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Grunt task for merging multiple data into a JSON file or Grunt config",
   "repository": "shinnn/grunt-merge-data",
   "author": {
