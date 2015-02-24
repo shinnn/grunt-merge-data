@@ -6,9 +6,7 @@ module.exports = (grunt) ->
   'use strict'
 
   require('time-grunt') grunt
-  require('jit-grunt') grunt, {
-    es6transpiler: 'grunt-es6-transpiler'
-  }
+  require('jit-grunt') grunt
 
   grunt.initConfig
     jsonlint:
@@ -23,20 +21,13 @@ module.exports = (grunt) ->
     clean:
       all: ['tasks', 'test/actual/*', 'tmp']
 
-    es6transpiler:
-      options:
-        environments: ['node', 'mocha']
+    babel:
       task:
         src: ['src/merge_data.js']
         dest: 'tasks/merge_data.js'
       test:
         src: ['test/test.js']
         dest: 'tmp/test-es5.js'
-
-    espower:
-      test:
-        src: ['<%= es6transpiler.test.dest %>']
-        dest: '<%= es6transpiler.test.dest %>'
 
     merge_data:
       no_options:
@@ -97,10 +88,7 @@ module.exports = (grunt) ->
       test:
         options:
           reporter: 'spec'
-        src: ['<%= es6transpiler.test.dest %>']
-
-    release:
-      options: {}
+        src: ['<%= babel.test.dest %>']
 
   grunt.registerTask 'run_this_plugin', ->
     grunt.loadTasks 'tasks'
@@ -110,13 +98,12 @@ module.exports = (grunt) ->
     'clean'
     'jsonlint'
     'jshint'
-    'es6transpiler'
+    'babel'
   ]
 
   grunt.registerTask 'test', [
     'build'
     'run_this_plugin'
-    'espower'
     'mochaTest'
   ]
 
