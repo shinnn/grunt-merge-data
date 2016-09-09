@@ -22,6 +22,8 @@ module.exports = (grunt) ->
       all: ['tasks', 'test/actual/*', 'tmp']
 
     babel:
+      options:
+        presets: ['es2015']
       task:
         src: ['src/merge_data.js']
         dest: 'tasks/merge_data.js'
