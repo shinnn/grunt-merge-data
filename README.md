@@ -160,6 +160,6 @@ grunt.initConfig({
 
 ## License
 
-Copyright (c) 2013 - 2015 [Shinnosuke Watanabe](https://github.com/shinnn).
+Copyright (c) 2013 - 2016 [Shinnosuke Watanabe](https://github.com/shinnn).
 
 Licensed under [the MIT license](./LICENSE).
